@@ -10,12 +10,19 @@
 
 <body>
   <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
+  <h3>Interactive Data Filtering</h3>
   <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
+    <input type="text" name="query" placeholder="Describe how you want the data filtered" required />
     <input type="submit" value="Generate names" />
   </form>
-  {% if result %}
-  <div class="result">{{ result }}</div>
-  {% endif %}
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+  <body>
+  {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+  {% endfor %}
+  </body>
 </body>
