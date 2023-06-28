@@ -1,7 +1,3 @@
-# v1_2 trying to get ploting using plotly to work
-
-# v1_1 was getting open ai api set up and getting the filtering functionality to work
-
 # Project modified, original readme is below
 
 # OpenAI API Quickstart - Python example app
