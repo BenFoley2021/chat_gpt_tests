@@ -1,3 +1,5 @@
+# to avoid reloading the application and overwriting the data use flask run --no-reload
+
 # Project modified, original readme is below
 
 # OpenAI API Quickstart - Python example app

@@ -8,7 +8,6 @@ import sys
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 print(openai.api_key)
-app = Flask(__name__)
 
 @lru_cache()
 def query_chatgpt(prompt):
@@ -16,7 +15,7 @@ def query_chatgpt(prompt):
     return openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
-        temperature=0.6,
+        temperature=0.3,
         n=1,
         max_tokens=300
     )
@@ -27,7 +26,7 @@ class DataFrameFilterer:
         self.df = pd.read_csv('consumer_insights_test_data.csv')
         self.used_animals = []
         self.test_prompt = "Write a function to filter a pandas data frame. This function should be named filter_df, and only this function and required imports should be included in the response. These are the columns in the dataframe Creator/Property: string, Views: float, Views Growth: float, Relevance Score: float, Viewing Affinity: float, Audience Overlap: float, Market Share: float. Return the rows in the top 10% of Viewing Affinity where the Views Growth is positive."
-        self.read_existing = True
+        self.read_existing = False
         self.prompt_base = "Write a function to filter a pandas data frame. This function should be named filter_df, and only this function and required imports should be included in the response. These are the columns in the dataframe Creator/Property: string, Views: float, Views Growth: float, Relevance Score: float, Viewing Affinity: float, Audience Overlap: float, Market Share: float. "
 
     def generate_prompt(self):
@@ -56,7 +55,7 @@ class DataFrameFilterer:
             #animal = request.form["animal"]
             #self.used_animals.append(animal)
             if not self.read_existing:
-                response = self.query_chatgpt(self.generate_prompt())
+                response = query_chatgpt(self.generate_prompt())
                 self.save_query_results(response)
             print(f'the prompt is {self.generate_prompt()}')
             print(f'read_existing {self.read_existing}', file=sys.stderr)
