@@ -94,8 +94,6 @@ class DataFrameFilterer:
 
 
 app = Flask(__name__)
-app.config['DEBUG'] = False
-app.config['TEMPLATES_AUTO_RELOAD'] = False
 pet_namer = DataFrameFilterer()
 
 @app.route("/", methods=("GET", "POST"))
