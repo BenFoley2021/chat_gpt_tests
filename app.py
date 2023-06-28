@@ -52,13 +52,12 @@ class DataFrameFilterer:
     def process_df(self):
         from local_module import func
         self.df = func(self.df)
-        del func
+        self.df.to_csv('consumer_insights_test_data.csv')
 
     def make_plot(self):
         from local_module import func
         fig = func(self.df)
         fig.show()
-        del func
 
     def save_query_results(self, response):
         with open('response.pckl', 'wb') as file:

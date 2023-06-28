@@ -1,2 +1,4 @@
 def func(df):
-    return df[df['Views'] > 100_000]
+    import plotly.express as px
+    fig = px.scatter(df, x='Views', y='Viewing Affinity', size='Views Growth', color='Creator')
+    return fig
